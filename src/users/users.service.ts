@@ -32,6 +32,12 @@ export class UsersService {
   }
 
   async signup(data) {
+    const userPresent = await this.userModel.findAll({
+      where: { email: data.email },
+    });
+    if (userPresent) {
+      throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
+    }
     const { name, email, password } = data;
     const user = new this.userModel();
     user.name = name;

@@ -6,6 +6,7 @@ import {
   AutoIncrement,
   PrimaryKey,
   IsEmail,
+  Unique,
 } from 'sequelize-typescript';
 
 @Table
@@ -25,6 +26,7 @@ export class User extends Model<User> {
   @Column({
     allowNull: false,
     type: DataTypes.STRING,
+    unique: true,
   })
   email: string;
 
